@@ -6,17 +6,19 @@ L.Control.Print = L.Control.extend({
 
 	options: {
 		position: 'topleft',
-		showLayouts: true
+		showLayouts: true,
+        className: 'leaflet-control-print'
 	},
 
 	initialize: function (options) {
 		L.Control.prototype.initialize.call(this, options);
 		this._actionButtons = {};
 		this._actionsVisible = false;
+        this._container = L.DomUtil.create('div', this.options.className);
 	},
 
 	onAdd: function (map) {
-		var container = L.DomUtil.create('div', 'leaflet-control-print'),
+		var container = this._container,
 		    toolbarContainer = L.DomUtil.create('div', 'leaflet-bar', container),
 		    link;
 
